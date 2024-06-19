@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Filmes</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'movie.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Filmes</h1>
+        <a href="{% url 'create_movie' %}" class="button">Criar Filme</a>
+        <a href="/" class="button">Voltar</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Ano de Lançamento</th>
+                    <th>Categoria</th>
+                    <th>Editar</th>
+                    <th>Deletar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for movie in movies %}
+                    <tr>
+                        <td>{{ movie.title }}</td>
+                        <td>{{ movie.release }}</td>
+                        <td>{{ movie.category.name }}</td>
+                        <td><a href="{% url 'edit_movie' movie.id %}" class="button">Editar</a></td>
+                        <td>
+                            <form action="{% url 'delete_movie' movie.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit">Deletar</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

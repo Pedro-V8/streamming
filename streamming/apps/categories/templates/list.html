@@ -1,0 +1,42 @@
+<!-- templates/myapp/categories/listar.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listar Categorias</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'category.css' %}">
+</head>
+<body>
+<div class="container">
+    <h1>Categorias</h1>
+    <button class="button" onclick="window.location.href='{% url 'create_categories' %}'">Criar Categoria</button>
+    <a href="/" class="button">Voltar</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Editar</th>
+                <th>Excluir</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for category in categories %}
+                <tr>
+                    <td>{{ category.id }}</td>
+                    <td>{{ category.name }}</td>
+                    <td><a class="button" href="{% url 'edit_category' category.id %}">Editar</a></td>
+                    <td>
+                        <form action="{% url 'delete_category' category.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Deletar</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!-- home.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Página Inicial</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'movie.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Bem-vindo à Página Inicial</h1>
+        <div class="buttons">
+            <a href="{% url 'list_category' %}" class="button">Ver Categorias</a>
+            <a href="/list_movies" class="button">Ver Filmes</a>
+        </div>
+    </div>
+</body>
+</html>
