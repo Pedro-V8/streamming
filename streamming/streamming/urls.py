@@ -17,17 +17,17 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from apps.categories.views import home, list_category , create_category , edit_category , delete_category
+from apps.categories.views import home, CategoryListView, CategoryCreateView, CategoryEditView, CategoryDeleteView
 from apps.movies.views import list_movie , create_movie , edit_movie , delete_movie
 from apps.trending.views import TrendingStarView , TrendingStarViewPost
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home, name="home"),
-    path('list_category/', list_category, name="list_category"),
-    path('create_categories/', create_category, name="create_categories"),
-    path('edit_category/<int:id>', edit_category, name="edit_category"),
-    path('delete_category/<int:id>', delete_category, name="delete_category"),
+    path('', home, name='home'),
+    path('list_category/', CategoryListView.as_view(), name='list_category'),
+    path('create_categories/', CategoryCreateView.as_view(), name='create_category'),
+    path('edit_category/<int:id>/', CategoryEditView.as_view(), name='edit_category'),
+    path('delete_category/<int:id>/', CategoryDeleteView.as_view(), name='delete_category'),
 
     path('list_movies/', list_movie, name="list_movie"),
     path('create_movie/', create_movie, name="create_movie"),
