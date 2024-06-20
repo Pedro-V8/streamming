@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from apps.categories.views import home, list_category , create_category , edit_category , delete_category
 
+from apps.categories.views import home, list_category , create_category , edit_category , delete_category
 from apps.movies.views import list_movie , create_movie , edit_movie , delete_movie
+from apps.trending.views import TrendingStarView , TrendingStarViewPost
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,5 +33,9 @@ urlpatterns = [
     path('create_movie/', create_movie, name="create_movie"),
     path('edit_movie/<int:id>', edit_movie, name="edit_movie"),
     path('delete_movie/<int:id>', delete_movie, name="delete_movie"),
+
+    path('trending/', TrendingStarView.as_view(), name="trending_movies"),
+    path('trending/star/<int:id>/', TrendingStarViewPost.as_view(), name="trending_star"),
+
 
 ]

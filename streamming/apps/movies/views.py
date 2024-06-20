@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404 , redirect
 
+from apps.trending.models import Trending
 from .models import Movies
 from .forms import MoviesForm
 
@@ -12,7 +13,10 @@ def create_movie(request):
     if request.method == "POST":
         form = MoviesForm(request.POST)
         if form.is_valid():
-            form.save()
+            movie = form.save()
+
+            trending_movie = Trending(movie=movie, star=False)
+            trending_movie.save()
             return redirect('list_movie')
     else:
         form = MoviesForm()
@@ -33,5 +37,6 @@ def delete_movie(request, id):
     movie = get_object_or_404(Movies, id=id)
     if request.method == "POST":
         movie.delete()
+        Trending.objects.filter(movie=movie).delete()
         return redirect('list_movie')
     return render(request, 'delete_movie.html', {'movie': movie})

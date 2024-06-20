@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trending Movies</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'trending.css' %}">
+</head>
+<body>
+    <h1>Trending Movies</h1>
+    <ul class="movie-list">
+        {% for trending in trending_movies %}
+            <div class="movie-item {% if trending.star %}active{% endif %}">
+                <li>
+                    {{ trending.movie.title }} ({{ trending.movie.release }})
+                </li>
+                <a href="{% url 'trending_star' trending.id %}" >
+                    <img src="{% static 'star.png' %}" alt="Star" class="star-icon">
+                </a>
+            </div>
+        {% endfor %}
+    </ul>
+</body>
+</html>
