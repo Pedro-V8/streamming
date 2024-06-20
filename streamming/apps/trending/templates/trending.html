@@ -9,6 +9,7 @@
 </head>
 <body>
     <h1>Trending Movies</h1>
+    <a href="/" class="button">Voltar</a>
     <ul class="movie-list">
         {% for trending in trending_movies %}
             <div class="movie-item {% if trending.star %}active{% endif %}">

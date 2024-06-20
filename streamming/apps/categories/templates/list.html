@@ -10,7 +10,8 @@
 <body>
 <div class="container">
     <h1>Categorias</h1>
-    <button class="button" onclick="window.location.href='create_categories/'">Criar Categoria</button>
+    <!--<button class="button" onclick="window.location.href='create_categories/'">Criar Categoria</button>-->
+    <a href="{% url 'create_category' %}" class="button">Criar Categorias</a>
     <a href="/" class="button">Voltar</a>
     <table>
         <thead>

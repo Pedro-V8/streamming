@@ -18,21 +18,21 @@ from django.contrib import admin
 from django.urls import path
 
 from apps.categories.views import home, CategoryListView, CategoryCreateView, CategoryEditView, CategoryDeleteView
-from apps.movies.views import list_movie , create_movie , edit_movie , delete_movie
+from apps.movies.views import MovieListView, MovieCreateView, MovieEditView, MovieDeleteView
 from apps.trending.views import TrendingStarView , TrendingStarViewPost
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('list_category/', CategoryListView.as_view(), name='list_category'),
-    path('create_categories/', CategoryCreateView.as_view(), name='create_category'),
+    path('create_category/', CategoryCreateView.as_view(), name='create_category'),
     path('edit_category/<int:id>/', CategoryEditView.as_view(), name='edit_category'),
     path('delete_category/<int:id>/', CategoryDeleteView.as_view(), name='delete_category'),
 
-    path('list_movies/', list_movie, name="list_movie"),
-    path('create_movie/', create_movie, name="create_movie"),
-    path('edit_movie/<int:id>', edit_movie, name="edit_movie"),
-    path('delete_movie/<int:id>', delete_movie, name="delete_movie"),
+    path('list_movies/', MovieListView.as_view(), name='list_movie'),
+    path('create_movie/', MovieCreateView.as_view(), name='create_movie'),
+    path('edit_movie/<int:id>/', MovieEditView.as_view(), name='edit_movie'),
+    path('delete_movie/<int:id>/', MovieDeleteView.as_view(), name='delete_movie'),
 
     path('trending/', TrendingStarView.as_view(), name="trending_movies"),
     path('trending/star/<int:id>/', TrendingStarViewPost.as_view(), name="trending_star"),

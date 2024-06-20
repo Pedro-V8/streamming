@@ -4,11 +4,10 @@ from django.urls import reverse_lazy
 from .models import Category
 from .forms import CategoryForm
 
-# Function-based home view (unchanged)
 def home(request):
     return render(request, 'home.html', {})
 
-# Class-based list category view
+
 class CategoryListView(View):
     template_name = 'list.html'
 
@@ -16,7 +15,7 @@ class CategoryListView(View):
         categories = Category.objects.all()
         return render(request, self.template_name, {'categories': categories})
 
-# Class-based create category view
+
 class CategoryCreateView(View):
     template_name = 'form.html'
 
@@ -31,7 +30,6 @@ class CategoryCreateView(View):
             return redirect('list_category')
         return render(request, self.template_name, {'form': form})
 
-# Class-based edit category view
 class CategoryEditView(View):
     template_name = 'form.html'
 
@@ -48,7 +46,7 @@ class CategoryEditView(View):
             return redirect('list_category')
         return render(request, self.template_name, {'form': form})
 
-# Class-based delete category view
+
 class CategoryDeleteView(View):
     template_name = 'delete.html'
 
